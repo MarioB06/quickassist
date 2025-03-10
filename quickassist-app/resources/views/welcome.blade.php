@@ -1,36 +1,33 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Neues Ticket erstellen
+        </h2>
+    </x-slot>
 
-@section('content')
-<div class="container mt-5">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h2 class="card-title text-center">Neues Ticket erstellen</h2>
-            
-            <form action="{{ route('tickets.store') }}" method="POST">
-                @csrf
-                
-                <div class="mb-3">
-                    <label for="title" class="form-label">Titel</label>
-                    <input type="text" id="title" name="title" required class="form-control">
-                </div>
-                
-                <div class="mb-3">
-                    <label for="description" class="form-label">Beschreibung</label>
-                    <textarea id="description" name="description" required rows="4" class="form-control"></textarea>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="priority" class="form-label">Priorität</label>
-                    <select id="priority" name="priority" required class="form-select">
-                        <option value="low">Niedrig</option>
-                        <option value="medium">Mittel</option>
-                        <option value="high">Hoch</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn btn-primary w-100">Ticket erstellen</button>
-            </form>
-        </div>
+    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <form action="{{ route('tickets.store') }}" method="POST" class="space-y-4">
+            @csrf
+            <div>
+                <label for="title" class="block text-sm font-medium text-gray-700">Titel</label>
+                <input type="text" name="title" id="title" class="mt-1 block w-full border-gray-300 rounded-md" required>
+            </div>
+
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Beschreibung</label>
+                <textarea name="description" id="description" rows="4" class="mt-1 block w-full border-gray-300 rounded-md" required></textarea>
+            </div>
+
+            <div>
+                <label for="priority" class="block text-sm font-medium text-gray-700">Priorität</label>
+                <select name="priority" id="priority" class="mt-1 block w-full border-gray-300 rounded-md">
+                    <option value="Low">Niedrig</option>
+                    <option value="Medium">Mittel</option>
+                    <option value="High">Hoch</option>
+                </select>
+            </div>
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Absenden</button>
+        </form>
     </div>
-</div>
-@endsection
+</x-app-layout>
